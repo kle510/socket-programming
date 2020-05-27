@@ -1,8 +1,8 @@
 # Socket Programming
-
+A client/server communication application using socket programming and TCP/UDP protocols to receive binary data, perform binary computations, and display the results on the command terminal.
 
 ## Foreward
-The program follows the format as specified by the project instruction. The servers boot up preceding the client. The client is run by the command ./client <filename>, where file name is an input text file (command line argument) containing a list of commands separated by commas in the format of "decision,number1,number2", where decision is "and" or "or", the first binary number, and the second binary number. The client sends the lines of the text file to the edge server. The edge server makes a determination on each line iteratively on whether or not it is an "and" or  "or" command, and sends it to the server_and and server_or back-end servers. The backend servers perform the computations, forwards the computational result back to the edge server, and shuts down. The edge server prints the collective results, aggregates them, and sends them back to the client, and shuts down. The client, prints out the results, and shuts down. 
+The servers boot up preceding the client. The client is run by the command ./client <filename>, where file name is an input text file (command line argument) containing a list of commands separated by commas in the format of "decision,number1,number2", where decision is "and" or "or", the first binary number, and the second binary number. The client sends the lines of the text file to the edge server. The edge server makes a determination on each line iteratively on whether or not it is an "and" or  "or" command, and sends it to the server_and and server_or back-end servers. The backend servers perform the computations, forwards the computational result back to the edge server, and shuts down. The edge server prints the collective results, aggregates them, and sends them back to the client, and shuts down. The client, prints out the results, and shuts down. 
 
 NOTE: modified versions of Beej's Networking Guide were used to start and close the TCP and UDP sockets. All processing code was self-developed, with the help of Beej's C  Guide and cplusplus.com
 
@@ -61,7 +61,7 @@ All codes for establishing the UDP client and server were taken from Beej's Netw
 *For the computed result, only the result is printed (on all files )
 
 
-## Reused Code
+## Other
 
 Beej's Networking Tutorial
 Modified version of Beej's code were used for the TCP client on client.cpp and TCP server on edge.cpp. For the TCP client --  because our code is a one-to-one, one time connection, there is no need to cycle through all avaialble clients -- so the for loop to create and connect the socket was taken out.  For the TCP server -- the while loop that keeps the edge server running on Beej's tutorial, as well as the fork() distinction, was removed as our program is a one-to-one connection with only one client. Thus, every time a TCP connection with the client is finished, we must reboot the server again from the start. 
@@ -69,7 +69,7 @@ Modified version of Beej's code were used for the TCP client on client.cpp and T
 The UDP server and client codes on edge.cpp, server_or.cpp, and server_and.cpp were kept as is.
 
 http://www.linuxhowtos.org/C_C++/socket.htm
-The idea of implementing the TCP and UDP connection process from this tutorial was considered. However, the gethostbyname() function used by this website had less functionality then the getaddressinfo() method used by Beej's so Beej's implementation was ultimately chosen. However, the tutorial provided by the Linux How To website was tested, and provided further insight onto the way TCP and UDP connections worked, which helped my understanding a lot :)
+The idea of implementing the TCP and UDP connection process from this tutorial was considered. However, the gethostbyname() function used by this website had less functionality then the getaddressinfo() method used by Beej's so Beej's implementation was ultimately chosen. However, the tutorial provided by the Linux How To website was tested, and provided further insight into the way TCP and UDP connections worked.
 
 
 Other code commands, functions, and libraries were used with the guidance of cplusplus.com and Beej's C Programming Tutorial.
