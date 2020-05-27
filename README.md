@@ -2,12 +2,12 @@
 A client/server communication application using socket programming and TCP/UDP protocols to receive binary data, perform binary computations, and display the results on the command terminal.
 
 ## Foreward
-The servers boot up preceding the client. The client is run by the command ./client <filename>, where file name is an input text file (command line argument) containing a list of commands separated by commas in the format of "decision,number1,number2", where decision is "and" or "or", the first binary number, and the second binary number. The client sends the lines of the text file to the edge server. The edge server makes a determination on each line iteratively on whether or not it is an "and" or  "or" command, and sends it to the server_and and server_or back-end servers. The backend servers perform the computations, forwards the computational result back to the edge server, and shuts down. The edge server prints the collective results, aggregates them, and sends them back to the client, and shuts down. The client, prints out the results, and shuts down. 
+The servers boot up preceding the client. The client is run by the command ./client and the filename, where file name is an input text file (command line argument) containing a list of commands separated by commas in the format of "decision,number1,number2", where decision is "and" or "or", the first binary number, and the second binary number. The client sends the lines of the text file to the edge server. The edge server makes a determination on each line iteratively on whether or not it is an "and" or  "or" command, and sends it to the server_and and server_or back-end servers. The backend servers perform the computations, forwards the computational result back to the edge server, and shuts down. The edge server prints the collective results, aggregates them, and sends them back to the client, and shuts down. The client, prints out the results, and shuts down. 
 
 NOTE: modified versions of Beej's Networking Guide were used to start and close the TCP and UDP sockets. All processing code was self-developed, with the help of Beej's C  Guide and cplusplus.com
 
 ## client.cpp
-The client runs ./client and the <filename>, where the file name is a txt file following the same format as specified in the project guidelines. The program has NOT been tested with different file formats.  
+The client runs ./client and the filename, where the file name is a txt file. The program has NOT been tested with different file formats.  
 
 In accordance with Beej's Networking Guide, the client boots creates a socket, boots up the TCP socket, and attempts to connect to the server sharing the same port number. 
 
@@ -50,10 +50,24 @@ When the back-end server receives an indication that there are no more lines to 
 
 All codes for establishing the UDP client and server were taken from Beej's Networking Tutorial, and kept as is.
 
+## Application flow
+<img src="images/image1.png" width="50%" height="50%"><p />
+
+client.cpp
+
+<img src="images/image2.png" width="50%" height="50%"><p />
+
+edge.cpp
+
+<img src="images/image3.png" width="50%" height="50%"><p />
+
+server_and.cpp (or server_or.cpp)
+
+
 
 ## Notes about with the project
 
-*All 3 servers (edge.cpp, server_and.cpp, and sever_or.cpp) must be rebooted every time we want to run the client program. 
+*All 3 servers (edge.cpp, server_and.cpp, and server_or.cpp) must be rebooted every time we want to run the client program. 
 *The servers must be booted first before running the client.
 *The client is run via ./client <filename>, where file name is an input text file (command line argument) . 
 *The program has not yet been tested with files of different file extensions besides .txt. It also has not been tested with files that do not follow the format of --   "decision,number1,number2", where decision is "and" or "or", the first binary number, and the second binary number, then a line break
